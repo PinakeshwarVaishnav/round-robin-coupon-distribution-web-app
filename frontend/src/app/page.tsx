@@ -13,7 +13,7 @@ export default function Home() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/claim",
+        "https://round-robin-coupon-distribution-web-app.onrender.com/api/claim",
         {},
         { withCredentials: true },
       );
@@ -37,7 +37,7 @@ export default function Home() {
       if (!Cookies.get("cookieId")) {
         try {
           await axios.post(
-            "http://localhost:3001/api/claim",
+            "https://round-robin-coupon-distribution-web-app.onrender.com/api/claim",
             {},
             { withCredentials: true },
           );
