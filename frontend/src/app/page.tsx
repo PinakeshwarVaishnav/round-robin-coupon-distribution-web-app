@@ -62,8 +62,11 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-4">
         Round-Robin Coupon Distributor
       </h1>
-      <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <p className="text-lg text-gray-600">
+        Claim your coupon below. Each user can claim one coupon per hour.
+      </p>
+      <div className="w-full p-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-6">
           {initialCoupons.map((coupon) => (
             <Card key={coupon.id} className="border border-gray-200">
               <CardHeader className="pb-2">
@@ -84,7 +87,7 @@ export default function Home() {
       {coupon && <p className="text-xl mb-4">Your coupon: {coupon}</p>}
       <button
         onClick={handleClaim}
-        className={`mt-9 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
         disabled={loading}
       >
         {loading ? "Claiming..." : "Claim a Coupon"}
