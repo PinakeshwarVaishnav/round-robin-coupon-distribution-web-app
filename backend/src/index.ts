@@ -5,7 +5,7 @@ import cors from "cors";
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(cors({ origin: "https://round-robin-coupon-distribution-web-app.vercel.app/", credentials: true }));
+app.use(cors({ origin: "https://round-robin-coupon-distribution-web-app.vercel.app", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
