@@ -9,7 +9,7 @@ app.use(cors({ origin: "https://round-robin-coupon-distribution-web-app.vercel.a
 app.use(express.json());
 app.use(cookieParser());
 
-const coupons = ["COUPON10", "COUPON20", "COUPON30", "COUPON40", "COUPON50"];
+const coupons = ["SAVE10","SAVE20", "SAVE30", "FREESHIP", "BOGO50"];
 let couponIndex = 0;
 const claimedIps: { [ip: string]: number } = {};
 const claimCooldown = 3600000; // 1 hour in milliseconds
