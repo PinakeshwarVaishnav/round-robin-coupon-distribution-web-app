@@ -3,9 +3,9 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
-app.use(cors({ origin: "http://localhost:3000", credentials: true })); // Adjust origin in production
+app.use(cors({ origin: "*", credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -19,7 +19,7 @@ app.post("/api/claim", (req: Request, res: Response): any => {
   const cookieId = req.cookies.cookieId;
   console.log("the value of ip is", ip);
   console.log("cookie id is", cookieId);
-  console.log('claimedIps value is', claimedIps)
+  console.log("claimedIps value is", claimedIps);
 
   if (ip && claimedIps[ip] && Date.now() - claimedIps[ip] < claimCooldown) {
     return res.status(429).json({
