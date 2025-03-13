@@ -3,6 +3,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { initialCoupons } from "@/lib/coupon";
 
 export default function Home() {
   const [coupon, setCoupon] = useState<string | null>(null);
@@ -54,14 +62,32 @@ export default function Home() {
       <h1 className="text-3xl font-bold mb-4">
         Round-Robin Coupon Distributor
       </h1>
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {initialCoupons.map((coupon) => (
+            <Card key={coupon.id} className="border border-gray-200">
+              <CardHeader className="pb-2">
+                <CardTitle>{coupon.code}</CardTitle>
+                <CardDescription>{coupon.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm text-gray-500">
+                  Discount: {coupon.discountPercentage}%
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+
       {message && <p className="mb-2 text-red-500">{message}</p>}
       {coupon && <p className="text-xl mb-4">Your coupon: {coupon}</p>}
       <button
         onClick={handleClaim}
-        className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+        className={`mt-9 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
         disabled={loading}
       >
-        Claim Coupon
+        {loading ? "Claiming..." : "Claim a Coupon"}
       </button>
     </div>
   );
